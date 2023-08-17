@@ -1,0 +1,34 @@
+package br.com.nathan.ecommerce.main.modules.customer.controller;
+
+import br.com.nathan.ecommerce.main.core.annotation.BaseController;
+import br.com.nathan.ecommerce.main.core.infra.http.HttpHelper;
+import br.com.nathan.ecommerce.main.core.mapper.Mapper;
+import br.com.nathan.ecommerce.main.modules.customer.controller.presentationModel.CustomerPM;
+import br.com.nathan.ecommerce.main.modules.customer.domain.Customer;
+import br.com.nathan.ecommerce.main.modules.customer.useCases.FindAllUseCase;
+import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+@AllArgsConstructor
+@BaseController("/customer")
+public class FindAllController {
+
+    private final FindAllUseCase findAllUseCase;
+    private final Mapper<Customer, CustomerPM> mapper;
+
+    @GetMapping
+    public ResponseEntity<?> handle() {
+        try {
+            final var data = findAllUseCase.execute()
+                                    .stream().map(mapper::map)
+                                    .collect(Collectors.toSet());
+            return HttpHelper.ok(Optional.of(data));
+        } catch (Exception exception) {
+            return HttpHelper.serverError(exception);
+        }
+    }
+}

@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.Optional;
 
-@BaseController("/customer")
+@BaseController("/customers")
 @AllArgsConstructor
 public class CreateController {
 
@@ -30,6 +30,9 @@ public class CreateController {
             var data = useCase.execute(dtoMapper.map(dto));
             return HttpHelper.ok(Optional.of(pmMapper.map(data)));
         } catch (Exception exception) {
+            if(TypeUtils.is(exception, IllegalArgumentException.class)) {
+                return HttpHelper.badRequest(exception);
+            }
             return HttpHelper.serverError(exception);
         }
     }

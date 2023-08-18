@@ -1,6 +1,7 @@
 package br.com.nathan.ecommerce.main.modules.customer.domain;
 
 import br.com.nathan.ecommerce.main.core.validator.StringValidator;
+import br.com.nathan.ecommerce.main.modules.customer.factory.Validators;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -9,15 +10,9 @@ public class Email {
 
     private String value;
 
-    @Autowired
-    private StringValidator<Email> emailValidator;
-
     public Email(String email) {
-        this.validate(email);
-        this.value = email;
-    }
-
-    private void validate(String email) {
+        final var emailValidator = Validators.emailValidator();
         emailValidator.validate(email);
+        this.value = email;
     }
 }

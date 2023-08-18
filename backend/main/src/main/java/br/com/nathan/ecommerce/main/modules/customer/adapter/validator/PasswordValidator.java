@@ -2,9 +2,7 @@ package br.com.nathan.ecommerce.main.modules.customer.adapter.validator;
 
 import br.com.nathan.ecommerce.main.core.validator.StringValidator;
 import br.com.nathan.ecommerce.main.modules.customer.domain.Password;
-import org.springframework.stereotype.Component;
 
-@Component
 public class PasswordValidator implements StringValidator<Password> {
 
     @Override

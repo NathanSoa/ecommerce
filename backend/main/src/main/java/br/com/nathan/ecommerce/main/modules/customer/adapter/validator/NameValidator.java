@@ -3,9 +3,7 @@ package br.com.nathan.ecommerce.main.modules.customer.adapter.validator;
 import br.com.nathan.ecommerce.main.core.domain.Constants;
 import br.com.nathan.ecommerce.main.core.validator.StringValidator;
 import br.com.nathan.ecommerce.main.modules.customer.domain.Name;
-import org.springframework.stereotype.Component;
 
-@Component
 public class NameValidator implements StringValidator<Name> {
 
     private static final int MAX_LENGTH = Constants.NAME_MAX_LENGTH;

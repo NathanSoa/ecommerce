@@ -1,6 +1,7 @@
 package br.com.nathan.ecommerce.main.modules.customer.domain;
 
 import br.com.nathan.ecommerce.main.core.validator.StringValidator;
+import br.com.nathan.ecommerce.main.modules.customer.factory.Validators;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -9,15 +10,9 @@ public class Password {
 
     private String value;
 
-    @Autowired
-    private StringValidator<Password> passwordValidator;
-
     public Password(String password) {
-        this.validate(password);
-        this.value = password;
-    }
-
-    private void validate(String password) {
+        final var passwordValidator = Validators.passwordValidator();
         passwordValidator.validate(password);
+        this.value = password;
     }
 }

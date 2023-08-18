@@ -9,10 +9,11 @@ public class Customer {
     private Name name;
     private Email email;
     private CPF cpf;
+    private Password password;
 
     private Customer() { }
 
-    public static Customer New() {
+    public static Customer Create() {
         return new Customer();
     }
 
@@ -33,6 +34,11 @@ public class Customer {
 
     public Customer withCPF(String cpf) {
         this.cpf = new CPF(cpf);
+        return this;
+    }
+
+    public Customer withPassword(String password) {
+        this.password = new Password(password);
         return this;
     }
 }

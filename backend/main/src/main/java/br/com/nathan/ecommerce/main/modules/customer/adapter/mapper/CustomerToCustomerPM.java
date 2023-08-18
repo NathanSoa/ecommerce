@@ -11,6 +11,7 @@ public class CustomerToCustomerPM implements Mapper<Customer, CustomerPM> {
     @Override
     public CustomerPM map(Customer raw) {
         return new CustomerPM(
+                raw.getId(),
                 raw.getName().getValue(),
                 raw.getCpf().getValue(),
                 raw.getEmail().getValue()

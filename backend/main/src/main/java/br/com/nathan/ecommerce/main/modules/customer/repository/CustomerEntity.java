@@ -25,4 +25,34 @@ public class CustomerEntity extends BaseEntity {
 
     @Password
     private String password;
+
+    public CustomerEntity withName(String name) {
+        this.name = name;
+        return this;
+    }
+
+    public CustomerEntity withEmail(String email) {
+        this.email = email;
+        return this;
+    }
+
+    public CustomerEntity withCpf(String cpf) {
+        this.cpf = cpf;
+        return this;
+    }
+
+    public CustomerEntity withPassword(String password) {
+        this.password = password;
+        return this;
+    }
+
+    public CustomerEntity withId(Long id) {
+        this.setId(id);
+        return this;
+    }
+
+    public CustomerEntity withActive(Boolean active) {
+        this.setActive(active);
+        return this;
+    }
 }

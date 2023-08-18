@@ -14,7 +14,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @NotBlank
 @Size
-public @interface CustomerName {
+public @interface Name {
 
     @AliasFor(annotation = Size.class, attribute = "min")
     int minLength() default Constants.NAME_MIN_LENGTH;

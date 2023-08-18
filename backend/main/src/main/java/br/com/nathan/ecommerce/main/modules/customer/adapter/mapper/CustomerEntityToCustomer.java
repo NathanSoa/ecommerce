@@ -11,9 +11,11 @@ public class CustomerEntityToCustomer implements Mapper<CustomerEntity, Customer
     @Override
     public Customer map(CustomerEntity raw) {
         return Customer.Create()
+                .withId(raw.getId())
                 .withCPF(raw.getCpf())
                 .withEmail(raw.getEmail())
                 .withName(raw.getName())
-                .withPassword(raw.getPassword());
+                .withPassword(raw.getPassword())
+                .withActive(raw.getActive());
     }
 }

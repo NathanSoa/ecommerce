@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import java.util.Optional;
 
 @AllArgsConstructor
-@BaseController("/customer")
+@BaseController("/customers")
 public class FindOneController {
 
     private final FindOneUseCase findOneUseCase;

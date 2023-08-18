@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.Optional;
 
-@BaseController("/customer")
+@BaseController("/customers")
 @AllArgsConstructor
 public class UpdateController {
 

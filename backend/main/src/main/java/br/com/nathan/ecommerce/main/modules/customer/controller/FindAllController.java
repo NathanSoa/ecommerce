@@ -14,7 +14,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @AllArgsConstructor
-@BaseController("/customer")
+@BaseController("/customers")
 public class FindAllController {
 
     private final FindAllUseCase findAllUseCase;

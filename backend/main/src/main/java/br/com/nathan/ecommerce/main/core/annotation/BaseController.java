@@ -18,7 +18,7 @@ import java.lang.annotation.Target;
 public @interface BaseController {
 
     @AliasFor(annotation = RequestMapping.class, attribute = "value")
-    String[] value() default {"/api"};
+    String[] value();
 
     @AliasFor(annotation = CrossOrigin.class, attribute = "origins")
     String[] origins() default {"*"};

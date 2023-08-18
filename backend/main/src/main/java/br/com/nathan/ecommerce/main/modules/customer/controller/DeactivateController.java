@@ -10,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 
+import java.util.Optional;
+
 @BaseController("/customers")
 @AllArgsConstructor
 public class DeactivateController {
@@ -19,8 +21,8 @@ public class DeactivateController {
     @PutMapping("/{id}/deactivate")
     public ResponseEntity<?> handle(@PathVariable Long id) {
         try {
-            useCase.execute(id, false);
-            return HttpHelper.noContent();
+            var data = useCase.execute(id, false);
+            return HttpHelper.ok(Optional.of(data));
         } catch (Exception exception) {
             if(TypeUtils.is(exception, EntityNotFoundException.class)) {
                 return HttpHelper.badRequest(exception);

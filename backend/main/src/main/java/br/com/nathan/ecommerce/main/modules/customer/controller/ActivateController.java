@@ -21,8 +21,8 @@ public class ActivateController {
     @PutMapping("/{id}/activate")
     public ResponseEntity<?> handle(@PathVariable Long id) {
         try {
-            useCase.execute(id, true);
-            return HttpHelper.noContent();
+            var data = useCase.execute(id, true);
+            return HttpHelper.ok(Optional.of(data));
         } catch (Exception exception) {
             if(TypeUtils.is(exception, EntityNotFoundException.class)) {
                 return HttpHelper.badRequest(exception);

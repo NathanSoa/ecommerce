@@ -10,6 +10,7 @@ public class Customer {
     private Email email;
     private CPF cpf;
     private Password password;
+    private Boolean active;
 
     private Customer() { }
 
@@ -17,7 +18,7 @@ public class Customer {
         return new Customer();
     }
 
-    private Customer withId(Long id) {
+    public Customer withId(Long id) {
         this.id = id;
         return this;
     }
@@ -39,6 +40,11 @@ public class Customer {
 
     public Customer withPassword(String password) {
         this.password = new Password(password);
+        return this;
+    }
+
+    public Customer withActive(Boolean active) {
+        this.active = active;
         return this;
     }
 }

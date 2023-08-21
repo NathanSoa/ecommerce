@@ -1,29 +1,39 @@
 package br.com.nathan.ecommerce.main.modules.customer.repository;
 
 import br.com.nathan.ecommerce.main.core.domain.BaseEntity;
-import br.com.nathan.ecommerce.main.modules.customer.repository.annotation.CPF;
-import br.com.nathan.ecommerce.main.modules.customer.repository.annotation.Email;
-import br.com.nathan.ecommerce.main.modules.customer.repository.annotation.Name;
-import br.com.nathan.ecommerce.main.modules.customer.repository.annotation.Password;
+import br.com.nathan.ecommerce.main.core.domain.Constants;
 import jakarta.persistence.Entity;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.hibernate.validator.constraints.br.CPF;
 
 @Entity
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class CustomerEntity extends BaseEntity {
 
-    @Name
+    @NotBlank
+    @Size(min = Constants.NAME_MIN_LENGTH, max = Constants.NAME_MAX_LENGTH)
     private String name;
 
     @Email
+    @NotBlank
     private String email;
 
     @CPF
+    @NotBlank
     private String cpf;
 
-    @Password
+    @Pattern.List({
+            @Pattern(regexp = "(?=.*[A-Z]).+", message = "Password must contain one upper letter."),
+            @Pattern(regexp = "(?=.*[!@#$%^&*+=?-_()/\"\\.,<>~`;:]).+", message ="Password must contain one special character."),
+    })
+    @NotBlank
+    @Size(min = Constants.PASSWORD_MIN_LENGTH, max = Constants.PASSWORD_MAX_LENGTH)
     private String password;
 
     public CustomerEntity withName(String name) {

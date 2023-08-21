@@ -2,6 +2,7 @@ package br.com.nathan.ecommerce.main.core.exceptions;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -21,6 +22,14 @@ public class ExceptionHandlers extends ResponseEntityExceptionHandler {
         log.info("IllegalArgumentException {}", message);
         var fieldError = new FieldError(e.getMessage(), message);
         return ResponseEntity.badRequest().body(fieldError);
+    }
+
+    @ExceptionHandler({EntityNotFoundException.class})
+    public ResponseEntity<?> handleEntityNotFound(EntityNotFoundException e, WebRequest request) {
+        var message = messageResolver.resolve(e.getMessage(), request.getLocale());
+        log.info("EntityNotFoundException {}", message);
+        var fieldError = new FieldError(e.getMessage(), message);
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(fieldError);
     }
 
     private static class FieldError {

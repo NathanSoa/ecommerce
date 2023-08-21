@@ -26,14 +26,7 @@ public class CreateController {
 
     @PostMapping
     public ResponseEntity<?> handle(@RequestBody CustomerDTO dto) {
-        try {
-            var data = useCase.execute(dtoMapper.map(dto));
-            return HttpHelper.ok(Optional.of(pmMapper.map(data)));
-        } catch (Exception exception) {
-            if(TypeUtils.is(exception, IllegalArgumentException.class)) {
-                return HttpHelper.badRequest(exception);
-            }
-            return HttpHelper.serverError(exception);
-        }
+        var data = useCase.execute(dtoMapper.map(dto));
+        return HttpHelper.ok(Optional.of(pmMapper.map(data)));
     }
 }

@@ -27,14 +27,7 @@ public class UpdateController {
 
     @PutMapping("/{id}")
     public ResponseEntity<?> handle(@RequestBody CustomerDTO dto, @PathVariable Long id) {
-        try {
-            var data = useCase.execute(dtoMapper.map(dto), id);
-            return HttpHelper.ok(Optional.of(pmMapper.map(data)));
-        } catch (Exception exception) {
-            if(TypeUtils.is(exception, EntityNotFoundException.class)) {
-                return HttpHelper.badRequest(exception);
-            }
-            return HttpHelper.serverError(exception);
-        }
+        var data = useCase.execute(dtoMapper.map(dto), id);
+        return HttpHelper.ok(Optional.of(pmMapper.map(data)));
     }
 }

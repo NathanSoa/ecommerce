@@ -20,15 +20,7 @@ public class PatchPasswordController {
 
     @PatchMapping("/{id}/password")
     public ResponseEntity<?> handle(@RequestBody PatchPasswordRequest request, @PathVariable Long id) {
-        try {
-            useCase.execute(id, request.password());
-            return HttpHelper.noContent();
-        } catch (Exception exception) {
-            if(TypeUtils.is(exception, EntityNotFoundException.class)) {
-                return HttpHelper.badRequest(exception);
-            }
-            return HttpHelper.serverError(exception);
-        }
-
+        useCase.execute(id, request.password());
+        return HttpHelper.noContent();
     }
 }

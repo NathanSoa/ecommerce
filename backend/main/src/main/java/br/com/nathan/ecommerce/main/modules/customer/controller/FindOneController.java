@@ -24,14 +24,7 @@ public class FindOneController {
 
     @GetMapping("/{id}")
     public ResponseEntity<?> handle(@PathVariable Long id) {
-        try {
-            final var data = mapper.map(findOneUseCase.execute(id));
-            return HttpHelper.ok(Optional.of(data));
-        } catch (Exception exception) {
-            if(TypeUtils.is(exception, EntityNotFoundException.class)) {
-                return HttpHelper.notFound(exception);
-            }
-            return HttpHelper.serverError(exception);
-        }
+        final var data = mapper.map(findOneUseCase.execute(id));
+        return HttpHelper.ok(Optional.of(data));
     }
 }

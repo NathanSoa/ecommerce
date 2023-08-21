@@ -24,14 +24,7 @@ public class ActivateController {
 
     @PatchMapping("/{id}/activate")
     public ResponseEntity<?> handle(@PathVariable Long id) {
-        try {
-            var data = useCase.execute(id, true);
-            return HttpHelper.ok(Optional.of(mapper.map(data)));
-        } catch (Exception exception) {
-            if(TypeUtils.is(exception, EntityNotFoundException.class)) {
-                return HttpHelper.badRequest(exception);
-            }
-            return HttpHelper.serverError(exception);
-        }
+        var data = useCase.execute(id, true);
+        return HttpHelper.ok(Optional.of(mapper.map(data)));
     }
 }

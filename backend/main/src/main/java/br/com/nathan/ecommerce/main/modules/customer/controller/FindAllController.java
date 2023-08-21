@@ -22,13 +22,9 @@ public class FindAllController {
 
     @GetMapping
     public ResponseEntity<?> handle() {
-        try {
-            final var data = findAllUseCase.execute()
-                                    .stream().map(mapper::map)
-                                    .collect(Collectors.toSet());
-            return HttpHelper.ok(Optional.of(data));
-        } catch (Exception exception) {
-            return HttpHelper.serverError(exception);
-        }
+        final var data = findAllUseCase.execute()
+                                .stream().map(mapper::map)
+                                .collect(Collectors.toSet());
+        return HttpHelper.ok(Optional.of(data));
     }
 }

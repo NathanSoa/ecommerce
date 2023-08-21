@@ -18,14 +18,7 @@ public class DeleteController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> handle(@PathVariable Long id) {
-        try {
-            deleteUseCase.execute(id);
-            return HttpHelper.noContent();
-        } catch (Exception exception) {
-            if(TypeUtils.is(exception, EntityNotFoundException.class)) {
-                return HttpHelper.badRequest(exception);
-            }
-            return HttpHelper.serverError(exception);
-        }
+        deleteUseCase.execute(id);
+        return HttpHelper.noContent();
     }
 }

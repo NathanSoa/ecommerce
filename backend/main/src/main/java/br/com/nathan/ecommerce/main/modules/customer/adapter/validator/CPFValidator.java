@@ -7,13 +7,13 @@ public class CPFValidator implements StringValidator<CPF> {
     @Override
     public void validate(String cpf) {
         if(cpf == null || cpf.isBlank() || cpf.isEmpty()) {
-            throw new IllegalArgumentException("CPF cannot be null or blank");
+            throw new IllegalArgumentException("customer.cpf.required");
         }
         var cpfValidator = new br.com.caelum.stella.validation.CPFValidator();
         try {
             cpfValidator.assertValid(cpf);
         } catch (Exception e) {
-            throw new IllegalArgumentException(e.getMessage());
+            throw new IllegalArgumentException("customer.cpf.invalid");
         }
     }
 }

@@ -8,11 +8,11 @@ public class EmailValidator implements StringValidator<Email> {
     @Override
     public void validate(String email) {
         if(email == null || email.isBlank() || email.isEmpty()) {
-            throw new IllegalArgumentException("Email cannot be null or blank");
+            throw new IllegalArgumentException("customer.email.required");
         }
         var emailValidator = new org.hibernate.validator.internal.constraintvalidators.bv.EmailValidator();
         if(!emailValidator.isValid(email, null)) {
-            throw new IllegalArgumentException("Invalid email!");
+            throw new IllegalArgumentException("customer.email.invalid");
         }
     }
 }

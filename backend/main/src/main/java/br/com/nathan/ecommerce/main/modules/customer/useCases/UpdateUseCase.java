@@ -16,7 +16,7 @@ public class UpdateUseCase {
     private final Mapper<Customer, CustomerEntity> mapper;
 
     public Customer execute(Customer customer, Long id) {
-        repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Cannot find customer with id: " + id));
+        repository.findById(id).orElseThrow(() -> new EntityNotFoundException("customer.not-found"));
         customer.setId(id);
         repository.save(mapper.map(customer));
         return customer;

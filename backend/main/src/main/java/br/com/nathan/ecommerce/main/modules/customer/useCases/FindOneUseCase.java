@@ -16,7 +16,7 @@ public class FindOneUseCase {
     private final Mapper<CustomerEntity, Customer> mapper;
 
     public Customer execute(Long id) {
-        final var data = repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Cannot find customer with id: " + id));
+        final var data = repository.findById(id).orElseThrow(() -> new EntityNotFoundException("customer.not-found"));
         return mapper.map(data);
     }
 }

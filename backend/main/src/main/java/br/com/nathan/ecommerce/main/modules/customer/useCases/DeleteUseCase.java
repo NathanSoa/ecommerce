@@ -12,7 +12,7 @@ public class DeleteUseCase {
     private final CustomerRepository repository;
 
     public void execute(Long id) {
-        repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Cannot find customer with id: " + id));
+        repository.findById(id).orElseThrow(() -> new EntityNotFoundException("customer.not-found"));
         repository.deleteById(id);
     }
 }

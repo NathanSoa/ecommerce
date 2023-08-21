@@ -16,7 +16,7 @@ public class PatchActiveUseCase {
     private final Mapper<CustomerEntity, Customer> mapper;
 
     public Customer execute(Long id, Boolean active) {
-        var customer = repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Customer not found with id: " + id));
+        var customer = repository.findById(id).orElseThrow(() -> new EntityNotFoundException("customer.not-found"));
         customer.setActive(active);
         customer = repository.save(customer);
         return mapper.map(customer);

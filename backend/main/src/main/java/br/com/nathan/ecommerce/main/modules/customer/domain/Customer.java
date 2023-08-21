@@ -10,6 +10,7 @@ public class Customer {
     private Email email;
     private CPF cpf;
     private Password password;
+    private Address address;
     private Boolean active;
 
     private Customer() { }
@@ -40,6 +41,19 @@ public class Customer {
 
     public Customer withPassword(String password) {
         this.password = new Password(password);
+        return this;
+    }
+
+    public Customer withAddress(Address address) {
+        if(address == null) throw new IllegalArgumentException("address.required");
+        this.address = Address.Create()
+                            .withCity(address.getCity())
+                            .withComplement(address.getComplement())
+                            .withNeighborhood(address.getNeighborhood())
+                            .withNumber(address.getNumber())
+                            .withState(address.getState())
+                            .withStreet(address.getStreet())
+                            .withZipCode(address.getZipCode());
         return this;
     }
 

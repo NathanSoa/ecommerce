@@ -1,7 +1,8 @@
 package br.com.nathan.ecommerce.main.modules.customer.repository;
 
 import br.com.nathan.ecommerce.main.core.domain.BaseEntity;
-import br.com.nathan.ecommerce.main.core.domain.Constants;
+import br.com.nathan.ecommerce.main.config.constants.ValidationConstants;
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -16,8 +17,8 @@ import org.hibernate.validator.constraints.br.CPF;
 @EqualsAndHashCode(callSuper = true)
 public class CustomerEntity extends BaseEntity {
 
-    @NotBlank
-    @Size(min = Constants.NAME_MIN_LENGTH, max = Constants.NAME_MAX_LENGTH)
+    @NotBlank(message = "{customer.name.not-blank}")
+    @Size(min = ValidationConstants.NAME_MIN_LENGTH, max = ValidationConstants.NAME_MAX_LENGTH, message = "{customer.name.size}")
     private String name;
 
     @Email
@@ -33,8 +34,11 @@ public class CustomerEntity extends BaseEntity {
             @Pattern(regexp = "(?=.*[!@#$%^&*+=?-_()/\"\\.,<>~`;:]).+", message ="Password must contain one special character."),
     })
     @NotBlank
-    @Size(min = Constants.PASSWORD_MIN_LENGTH, max = Constants.PASSWORD_MAX_LENGTH)
+    @Size(min = ValidationConstants.PASSWORD_MIN_LENGTH, max = ValidationConstants.PASSWORD_MAX_LENGTH)
     private String password;
+
+    @Embedded
+    private AddressEntity addressEntity;
 
     public CustomerEntity withName(String name) {
         this.name = name;
@@ -63,6 +67,12 @@ public class CustomerEntity extends BaseEntity {
 
     public CustomerEntity withActive(Boolean active) {
         this.setActive(active);
+        return this;
+    }
+
+    public CustomerEntity withAddress(AddressEntity addressEntity) {
+        if(addressEntity == null) throw new IllegalArgumentException("address.required");
+        this.addressEntity = addressEntity;
         return this;
     }
 }

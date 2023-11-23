@@ -4,6 +4,8 @@ import br.com.nathan.ecommerce.main.core.domain.BaseEntity;
 import br.com.nathan.ecommerce.main.config.constants.ValidationConstants;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
@@ -12,7 +14,10 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.hibernate.validator.constraints.br.CPF;
 
+import java.util.List;
+
 @Entity
+@Table(name = "customer")
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class CustomerEntity extends BaseEntity {
@@ -37,8 +42,8 @@ public class CustomerEntity extends BaseEntity {
     @Size(min = ValidationConstants.PASSWORD_MIN_LENGTH, max = ValidationConstants.PASSWORD_MAX_LENGTH)
     private String password;
 
-    @Embedded
-    private AddressEntity addressEntity;
+    @OneToMany(mappedBy = "customerEntity")
+    private List<AddressEntity> addressEntity;
 
     public CustomerEntity withName(String name) {
         this.name = name;
@@ -70,8 +75,8 @@ public class CustomerEntity extends BaseEntity {
         return this;
     }
 
-    public CustomerEntity withAddress(AddressEntity addressEntity) {
-        if(addressEntity == null) throw new IllegalArgumentException("address.required");
+    public CustomerEntity withAddress(List<AddressEntity> addressEntity) {
+        if(addressEntity == null || addressEntity.isEmpty()) throw new IllegalArgumentException("address.required");
         this.addressEntity = addressEntity;
         return this;
     }

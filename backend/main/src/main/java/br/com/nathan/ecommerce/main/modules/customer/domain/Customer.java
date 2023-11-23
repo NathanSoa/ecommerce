@@ -2,6 +2,8 @@ package br.com.nathan.ecommerce.main.modules.customer.domain;
 
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 public class Customer {
 
@@ -10,7 +12,7 @@ public class Customer {
     private Email email;
     private CPF cpf;
     private Password password;
-    private Address address;
+    private List<Address> address;
     private Boolean active;
 
     private Customer() { }
@@ -44,16 +46,18 @@ public class Customer {
         return this;
     }
 
-    public Customer withAddress(Address address) {
-        if(address == null) throw new IllegalArgumentException("address.required");
-        this.address = Address.Create()
-                            .withCity(address.getCity())
-                            .withComplement(address.getComplement())
-                            .withNeighborhood(address.getNeighborhood())
-                            .withNumber(address.getNumber())
-                            .withState(address.getState())
-                            .withStreet(address.getStreet())
-                            .withZipCode(address.getZipCode());
+    public Customer withAddress(List<Address> address) {
+        if(address == null || address.isEmpty()) throw new IllegalArgumentException("address.required");
+        this.address = address.stream()
+                .map(a -> Address.Create()
+                        .withCity(a.getCity())
+                        .withComplement(a.getComplement())
+                        .withNeighborhood(a.getNeighborhood())
+                        .withNumber(a.getNumber())
+                        .withState(a.getState())
+                        .withStreet(a.getStreet())
+                        .withZipCode(a.getZipCode()))
+                .toList();
         return this;
     }
 

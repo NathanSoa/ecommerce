@@ -1,12 +1,22 @@
 package br.com.nathan.ecommerce.main.modules.customer.repository;
 
-import jakarta.persistence.Embeddable;
+import br.com.nathan.ecommerce.main.core.domain.BaseEntity;
+import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
-@Embeddable
+@Entity
+@Table(name = "address")
 @Data
-public class AddressEntity {
+@EqualsAndHashCode(callSuper = true)
+public class AddressEntity extends BaseEntity {
+
+    @NotBlank
+    private String alias;
 
     @NotBlank
     private String street;
@@ -28,6 +38,18 @@ public class AddressEntity {
 
     @NotBlank
     private String zipCode;
+
+    @NotBlank
+    private String streetPurpose;
+
+    @ManyToOne
+    @JoinColumn(name = "customer_id", nullable = false)
+    private CustomerEntity customerEntity;
+
+    public AddressEntity withAlias(String alias) {
+        this.alias = alias;
+        return this;
+    }
 
     public AddressEntity withStreet(String street) {
         this.street = street;
@@ -61,6 +83,11 @@ public class AddressEntity {
 
     public AddressEntity withZipCode(String zipCode) {
         this.zipCode = zipCode;
+        return this;
+    }
+
+    public AddressEntity withStreetPurpose(String streetPurpose) {
+        this.streetPurpose = streetPurpose;
         return this;
     }
 }

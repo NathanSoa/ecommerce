@@ -1,10 +1,9 @@
-package br.com.nathan.ecommerce.main.modules.customer.adapter.validator;
+package br.com.nathan.ecommerce.main.modules.customer.validator;
 
 import br.com.nathan.ecommerce.main.config.constants.ValidationConstants;
-import br.com.nathan.ecommerce.main.core.validator.StringValidator;
-import br.com.nathan.ecommerce.main.modules.customer.domain.Password;
+import br.com.nathan.ecommerce.main.core.interfaces.Validator;
 
-public class PasswordValidator implements StringValidator<Password> {
+public class PasswordValidator implements Validator<String> {
 
     @Override
     public void validate(String object) {

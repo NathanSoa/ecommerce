@@ -1,10 +1,9 @@
-package br.com.nathan.ecommerce.main.modules.customer.adapter.validator;
+package br.com.nathan.ecommerce.main.modules.customer.validator;
 
 import br.com.nathan.ecommerce.main.config.constants.ValidationConstants;
-import br.com.nathan.ecommerce.main.core.validator.StringValidator;
-import br.com.nathan.ecommerce.main.modules.customer.domain.Name;
+import br.com.nathan.ecommerce.main.core.interfaces.Validator;
 
-public class NameValidator implements StringValidator<Name> {
+public class NameValidator implements Validator<String> {
 
     private static final int MAX_LENGTH = ValidationConstants.NAME_MAX_LENGTH;
     private static final int MIN_LENGTH = ValidationConstants.NAME_MIN_LENGTH;

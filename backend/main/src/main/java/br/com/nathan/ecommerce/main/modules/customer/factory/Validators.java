@@ -1,31 +1,33 @@
 package br.com.nathan.ecommerce.main.modules.customer.factory;
 
-import br.com.nathan.ecommerce.main.core.validator.StringValidator;
-import br.com.nathan.ecommerce.main.modules.customer.adapter.validator.*;
-import br.com.nathan.ecommerce.main.modules.customer.domain.CPF;
-import br.com.nathan.ecommerce.main.modules.customer.domain.Email;
-import br.com.nathan.ecommerce.main.modules.customer.domain.Name;
-import br.com.nathan.ecommerce.main.modules.customer.domain.Password;
+import br.com.nathan.ecommerce.main.core.interfaces.Validator;
+import br.com.nathan.ecommerce.main.modules.customer.validator.*;
 
 public class Validators {
 
-    public static StringValidator<Name> nameValidator() {
-        return new NameValidator();
+    private static final Validator<String> NAME_VALIDATOR = new NameValidator();
+    private static final Validator<String> PASSWORD_VALIDATOR = new PasswordValidator();
+    private static final Validator<String> EMAIL_VALIDATOR = new EmailValidator();
+    private static final Validator<String> CPF_VALIDATOR = new CpfValidator();
+    private static final AddressValidator ADDRESS_VALIDATOR = new AddressValidator();
+
+    public static Validator<String> nameValidator() {
+        return NAME_VALIDATOR;
     }
 
-    public static StringValidator<Password> passwordValidator() {
-        return new PasswordValidator();
+    public static Validator<String> passwordValidator() {
+        return PASSWORD_VALIDATOR;
     }
 
-    public static StringValidator<Email> emailValidator() {
-        return new EmailValidator();
+    public static Validator<String> emailValidator() {
+        return EMAIL_VALIDATOR;
     }
 
-    public static StringValidator<CPF> cpfValidator() {
-        return new CPFValidator();
+    public static Validator<String> cpfValidator() {
+        return CPF_VALIDATOR;
     }
 
     public static AddressValidator addressValidator() {
-        return new AddressValidator();
+        return ADDRESS_VALIDATOR;
     }
 }

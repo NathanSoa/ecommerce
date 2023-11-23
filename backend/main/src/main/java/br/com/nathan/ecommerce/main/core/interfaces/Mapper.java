@@ -1,4 +1,4 @@
-package br.com.nathan.ecommerce.main.core.mapper;
+package br.com.nathan.ecommerce.main.core.interfaces;
 
 public interface Mapper<T, S> {
 

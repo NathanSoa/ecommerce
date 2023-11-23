@@ -14,7 +14,6 @@ public class PatchPasswordUseCase {
 
     public void execute(Long id, String password) {
         var customer = repository.findById(id).orElseThrow(() -> new EntityNotFoundException("customer.not-found"));
-        Validators.passwordValidator().validate(password);
         customer.setPassword(password);
         repository.save(customer);
     }

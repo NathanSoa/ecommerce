@@ -2,12 +2,15 @@ package br.com.nathan.ecommerce.main.core.exceptions;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+
+import java.util.Arrays;
 
 @ControllerAdvice
 @Slf4j
@@ -19,7 +22,8 @@ public class ExceptionHandlers extends ResponseEntityExceptionHandler {
     @ExceptionHandler({IllegalArgumentException.class})
     public ResponseEntity<?> handleIllegalArgumentException(IllegalArgumentException e, WebRequest request) {
         var message = messageResolver.resolve(e.getMessage(), request.getLocale());
-        log.info("IllegalArgumentException {}", message);
+        log.info("ERROR: IllegalArgumentException {}", message);
+        log.info(Arrays.toString(e.getStackTrace()));
         var fieldError = new FieldError(e.getMessage(), message);
         return ResponseEntity.badRequest().body(fieldError);
     }
@@ -27,9 +31,19 @@ public class ExceptionHandlers extends ResponseEntityExceptionHandler {
     @ExceptionHandler({EntityNotFoundException.class})
     public ResponseEntity<?> handleEntityNotFound(EntityNotFoundException e, WebRequest request) {
         var message = messageResolver.resolve(e.getMessage(), request.getLocale());
-        log.info("EntityNotFoundException {}", message);
+        log.info("ERROR: EntityNotFoundException {}", message);
+        log.info(Arrays.toString(e.getStackTrace()));
         var fieldError = new FieldError(e.getMessage(), message);
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(fieldError);
+    }
+
+    @ExceptionHandler({BusinessException.class})
+    public ResponseEntity<?> handleBusinessException(BusinessException e, WebRequest request) {
+        var message = messageResolver.resolve(e.getMessage(), request.getLocale());
+        log.info("ERROR: BusinessException {}", message);
+        log.info(Arrays.toString(e.getStackTrace()));
+        var fieldError = new FieldError(e.getMessage(), message);
+        return ResponseEntity.badRequest().body(fieldError);
     }
 
     private static class FieldError {

@@ -1,9 +1,8 @@
-package br.com.nathan.ecommerce.main.modules.customer.adapter.validator;
+package br.com.nathan.ecommerce.main.modules.customer.validator;
 
-import br.com.nathan.ecommerce.main.core.validator.StringValidator;
-import br.com.nathan.ecommerce.main.modules.customer.domain.Email;
+import br.com.nathan.ecommerce.main.core.interfaces.Validator;
 
-public class EmailValidator implements StringValidator<Email> {
+public class EmailValidator implements Validator<String> {
 
     @Override
     public void validate(String email) {

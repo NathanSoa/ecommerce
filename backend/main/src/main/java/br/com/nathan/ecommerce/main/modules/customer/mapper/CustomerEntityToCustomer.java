@@ -1,6 +1,6 @@
-package br.com.nathan.ecommerce.main.modules.customer.adapter.mapper;
+package br.com.nathan.ecommerce.main.modules.customer.mapper;
 
-import br.com.nathan.ecommerce.main.core.mapper.Mapper;
+import br.com.nathan.ecommerce.main.core.interfaces.Mapper;
 import br.com.nathan.ecommerce.main.modules.customer.domain.Address;
 import br.com.nathan.ecommerce.main.modules.customer.domain.Customer;
 import br.com.nathan.ecommerce.main.modules.customer.repository.AddressEntity;
@@ -23,6 +23,6 @@ public class CustomerEntityToCustomer implements Mapper<CustomerEntity, Customer
                 .withName(raw.getName())
                 .withPassword(raw.getPassword())
                 .withActive(raw.getActive())
-                .withAddress(addressMapper.map(raw.getAddressEntity()));
+                .withAddress(raw.getAddressEntity().stream().map(addressMapper::map).toList());
     }
 }

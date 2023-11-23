@@ -1,13 +1,15 @@
 package br.com.nathan.ecommerce.main.modules.customer.domain;
 
-import br.com.nathan.ecommerce.main.modules.customer.adapter.validator.AddressValidator;
-import br.com.nathan.ecommerce.main.modules.customer.factory.Validators;
+import br.com.nathan.ecommerce.main.modules.customer.validator.AddressValidator;
 import lombok.Data;
+
+import java.util.List;
+
+import static br.com.nathan.ecommerce.main.modules.customer.factory.Validators.addressValidator;
 
 @Data
 public class Address {
-
-    private static final AddressValidator validator = Validators.addressValidator();
+    private String alias;
     private String street;
     private String number;
     private String complement;
@@ -15,11 +17,21 @@ public class Address {
     private String city;
     private String state;
     private String zipCode;
+    private List<String> streetPurpose;
+    private AddressValidator validator;
 
-    private Address() { }
+    private Address() {
+        this.validator = addressValidator();
+    }
 
     public static Address Create() {
         return new Address();
+    }
+
+    public Address withAlias(String alias) {
+        validator.validateAlias(alias);
+        this.alias = alias;
+        return this;
     }
 
     public Address withStreet(String street) {
@@ -61,6 +73,12 @@ public class Address {
     public Address withZipCode(String zipCode) {
         validator.validateZipCode(zipCode);
         this.zipCode = zipCode;
+        return this;
+    }
+
+    public Address withStreetPurpose(List<String> streetPurpose) {
+        validator.validateStreetPurpose(streetPurpose);
+        this.streetPurpose = streetPurpose;
         return this;
     }
 }

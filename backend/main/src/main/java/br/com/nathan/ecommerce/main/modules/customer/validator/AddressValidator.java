@@ -1,6 +1,29 @@
-package br.com.nathan.ecommerce.main.modules.customer.adapter.validator;
+package br.com.nathan.ecommerce.main.modules.customer.validator;
 
-public class AddressValidator {
+import br.com.nathan.ecommerce.main.core.interfaces.Validator;
+import br.com.nathan.ecommerce.main.modules.customer.domain.Address;
+
+import java.util.List;
+
+public class AddressValidator implements Validator<Address> {
+
+    @Override
+    public void validate(Address object) {
+        validateAlias(object.getAlias());
+        validateStreet(object.getStreet());
+        validateNumber(object.getNumber());
+        validateComplement(object.getComplement());
+        validateNeighborhood(object.getNeighborhood());
+        validateCity(object.getCity());
+        validateState(object.getState());
+        validateZipCode(object.getZipCode());
+    }
+
+    public void validateAlias(String alias) {
+        if (alias == null || alias.isEmpty()) {
+            throw new IllegalArgumentException("address.alias");
+        }
+    }
 
     public void validateStreet(String street) {
         if (street == null || street.isEmpty()) {
@@ -45,5 +68,13 @@ public class AddressValidator {
         if (!zipCode.matches("\\d{5}-\\d{3}")) {
             throw new IllegalArgumentException("address.zipcode.format");
         }
+    }
+
+    public void validateStreetPurpose(List<String> streetPurpose) {
+        streetPurpose.forEach(each -> {
+            if (each == null || each.isEmpty()) {
+                throw new IllegalArgumentException("address.streetPurpose.required");
+            }
+        });
     }
 }

@@ -1,8 +1,8 @@
-package br.com.nathan.ecommerce.main.modules.customer.adapter.validator;
+package br.com.nathan.ecommerce.main.modules.customer.validator;
 
-import br.com.nathan.ecommerce.main.core.validator.StringValidator;
-import br.com.nathan.ecommerce.main.modules.customer.domain.CPF;
-public class CPFValidator implements StringValidator<CPF> {
+import br.com.nathan.ecommerce.main.core.interfaces.Validator;
+
+public class CpfValidator implements Validator<String> {
 
     @Override
     public void validate(String cpf) {

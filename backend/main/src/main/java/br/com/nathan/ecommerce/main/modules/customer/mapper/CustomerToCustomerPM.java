@@ -1,6 +1,6 @@
-package br.com.nathan.ecommerce.main.modules.customer.adapter.mapper;
+package br.com.nathan.ecommerce.main.modules.customer.mapper;
 
-import br.com.nathan.ecommerce.main.core.mapper.Mapper;
+import br.com.nathan.ecommerce.main.core.interfaces.Mapper;
 import br.com.nathan.ecommerce.main.modules.customer.controller.presentationModel.CustomerPM;
 import br.com.nathan.ecommerce.main.modules.customer.domain.Customer;
 import org.springframework.stereotype.Component;

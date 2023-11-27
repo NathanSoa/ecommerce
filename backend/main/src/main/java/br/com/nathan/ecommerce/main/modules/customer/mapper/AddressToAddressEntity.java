@@ -2,7 +2,7 @@ package br.com.nathan.ecommerce.main.modules.customer.mapper;
 
 import br.com.nathan.ecommerce.main.core.interfaces.Mapper;
 import br.com.nathan.ecommerce.main.modules.customer.domain.Address;
-import br.com.nathan.ecommerce.main.modules.customer.repository.AddressEntity;
+import br.com.nathan.ecommerce.main.modules.customer.repository.entity.AddressEntity;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

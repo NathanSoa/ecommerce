@@ -3,8 +3,8 @@ package br.com.nathan.ecommerce.main.modules.customer.mapper;
 import br.com.nathan.ecommerce.main.core.interfaces.Mapper;
 import br.com.nathan.ecommerce.main.modules.customer.domain.Address;
 import br.com.nathan.ecommerce.main.modules.customer.domain.Customer;
-import br.com.nathan.ecommerce.main.modules.customer.repository.AddressEntity;
-import br.com.nathan.ecommerce.main.modules.customer.repository.CustomerEntity;
+import br.com.nathan.ecommerce.main.modules.customer.repository.entity.AddressEntity;
+import br.com.nathan.ecommerce.main.modules.customer.repository.entity.CustomerEntity;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 

@@ -44,6 +44,10 @@ public class CustomerEntity extends BaseEntity {
     @OneToMany(mappedBy = "customerEntity")
     private List<AddressEntity> addressEntity;
 
+    @OneToMany(mappedBy = "customerEntity")
+    private List<CardEntity> cardEntity;
+
+
     public CustomerEntity withName(String name) {
         this.name = name;
         return this;
@@ -77,6 +81,12 @@ public class CustomerEntity extends BaseEntity {
     public CustomerEntity withAddress(List<AddressEntity> addressEntity) {
         if(addressEntity == null || addressEntity.isEmpty()) throw new IllegalArgumentException("address.required");
         this.addressEntity = addressEntity;
+        return this;
+    }
+
+    public CustomerEntity withCard(List<CardEntity> cardEntity) {
+        if(cardEntity == null || cardEntity.isEmpty()) throw new IllegalArgumentException("card.required");
+        this.cardEntity = cardEntity;
         return this;
     }
 }

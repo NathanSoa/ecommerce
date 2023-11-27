@@ -3,6 +3,8 @@ package br.com.nathan.ecommerce.main.modules.customer.domain;
 import br.com.nathan.ecommerce.main.modules.customer.validator.CardValidator;
 import lombok.Data;
 
+import static br.com.nathan.ecommerce.main.modules.customer.factory.Validators.cardValidator;
+
 @Data
 public class Card {
 
@@ -15,7 +17,7 @@ public class Card {
     private CardValidator validator;
 
     private Card() {
-        this.validator = new CardValidator();
+        this.validator = cardValidator();
     }
 
     public static Card Create() {

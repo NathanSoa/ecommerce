@@ -13,7 +13,7 @@ public class Customer {
     private CPF cpf;
     private Password password;
     private List<Address> address;
-    private List<Card> cards;
+    private List<Card> card;
     private Boolean active;
 
     private Customer() { }
@@ -65,7 +65,7 @@ public class Customer {
 
     public Customer withCard(List<Card> cards) {
         if(cards == null || cards.isEmpty()) throw new IllegalArgumentException("card.required");
-        this.cards = cards.stream()
+        this.card = cards.stream()
                 .map(c -> Card.Create()
                         .withType(c.getType())
                         .withNumber(c.getNumber())

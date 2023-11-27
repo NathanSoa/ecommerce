@@ -1,4 +1,4 @@
-package br.com.nathan.ecommerce.main.modules.customer.repository.entity;
+package br.com.nathan.ecommerce.main.modules.customer.domain;
 
 import lombok.Getter;
 

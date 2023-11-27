@@ -2,7 +2,7 @@ package br.com.nathan.ecommerce.main.modules.customer.validator;
 
 import br.com.nathan.ecommerce.main.core.interfaces.Validator;
 import br.com.nathan.ecommerce.main.modules.customer.domain.Address;
-import br.com.nathan.ecommerce.main.modules.customer.repository.entity.AddressPurpose;
+import br.com.nathan.ecommerce.main.modules.customer.domain.AddressPurpose;
 
 import java.util.List;
 

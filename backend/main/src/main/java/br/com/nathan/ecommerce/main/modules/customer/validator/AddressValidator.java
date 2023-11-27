@@ -2,6 +2,7 @@ package br.com.nathan.ecommerce.main.modules.customer.validator;
 
 import br.com.nathan.ecommerce.main.core.interfaces.Validator;
 import br.com.nathan.ecommerce.main.modules.customer.domain.Address;
+import br.com.nathan.ecommerce.main.modules.customer.repository.entity.AddressPurpose;
 
 import java.util.List;
 
@@ -74,6 +75,10 @@ public class AddressValidator implements Validator<Address> {
         streetPurpose.forEach(each -> {
             if (each == null || each.isEmpty()) {
                 throw new IllegalArgumentException("address.streetPurpose.required");
+            }
+
+            if(!each.equals(AddressPurpose.BILLING.getDescription()) && !each.equals(AddressPurpose.DELIVERY.getDescription())) {
+                throw new IllegalArgumentException("address.streetPurpose.invalid");
             }
         });
     }

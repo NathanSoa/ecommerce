@@ -1,7 +1,7 @@
 package br.com.nathan.ecommerce.main.modules.customer.useCases;
 
-import br.com.nathan.ecommerce.main.core.exceptions.EntityNotFoundException;
-import br.com.nathan.ecommerce.main.modules.customer.repository.CustomerRepository;
+import br.com.nathan.ecommerce.main.core.interfaces.IDAO;
+import br.com.nathan.ecommerce.main.modules.customer.repository.entity.CustomerEntity;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -9,10 +9,9 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class DeleteUseCase {
 
-    private final CustomerRepository repository;
+    private final IDAO<CustomerEntity> repository;
 
     public void execute(Long id) {
-        repository.findById(id).orElseThrow(() -> new EntityNotFoundException("customer.not-found"));
         repository.deleteById(id);
     }
 }

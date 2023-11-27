@@ -1,10 +1,9 @@
 package br.com.nathan.ecommerce.main.modules.customer.useCases;
 
-import br.com.nathan.ecommerce.main.core.exceptions.EntityNotFoundException;
+import br.com.nathan.ecommerce.main.core.interfaces.IDAO;
 import br.com.nathan.ecommerce.main.core.interfaces.Mapper;
 import br.com.nathan.ecommerce.main.modules.customer.domain.Customer;
-import br.com.nathan.ecommerce.main.modules.customer.repository.CustomerEntity;
-import br.com.nathan.ecommerce.main.modules.customer.repository.CustomerRepository;
+import br.com.nathan.ecommerce.main.modules.customer.repository.entity.CustomerEntity;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -12,13 +11,13 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 public class PatchActiveUseCase {
 
-    private final CustomerRepository repository;
+    private final IDAO<CustomerEntity> repository;
     private final Mapper<CustomerEntity, Customer> mapper;
 
     public Customer execute(Long id, Boolean active) {
-        var customer = repository.findById(id).orElseThrow(() -> new EntityNotFoundException("customer.not-found"));
+        var customer = repository.findById(id);
         customer.setActive(active);
-        customer = repository.save(customer);
+        repository.save(customer);
         return mapper.map(customer);
     }
 }

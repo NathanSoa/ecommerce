@@ -1,6 +1,7 @@
 package br.com.nathan.ecommerce.main.modules.customer.controller.presentationModel;
 
 import br.com.nathan.ecommerce.main.modules.customer.domain.Address;
+import br.com.nathan.ecommerce.main.modules.customer.domain.Card;
 
 import java.util.List;
 
@@ -9,5 +10,6 @@ public record CustomerPM(Long id,
                          String cpf,
                          String email,
                          List<Address> address,
+                         List<Card> cards,
                          Boolean active) {
 }

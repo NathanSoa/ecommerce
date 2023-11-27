@@ -16,6 +16,7 @@ public class CustomerDTOToCustomer implements Mapper<CustomerDTO, Customer> {
                 .withPassword(raw.password())
                 .withCPF(raw.cpf())
                 .withActive(raw.active())
-                .withAddress(raw.address());
+                .withAddress(raw.address())
+                .withCard(raw.cards());
     }
 }

@@ -16,6 +16,7 @@ public class CustomerToCustomerPM implements Mapper<Customer, CustomerPM> {
                 raw.getCpf().getValue(),
                 raw.getEmail().getValue(),
                 raw.getAddress(),
+                raw.getCards(),
                 raw.getActive()
         );
     }

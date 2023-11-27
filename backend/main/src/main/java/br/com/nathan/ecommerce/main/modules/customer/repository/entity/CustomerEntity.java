@@ -1,8 +1,7 @@
-package br.com.nathan.ecommerce.main.modules.customer.repository;
+package br.com.nathan.ecommerce.main.modules.customer.repository.entity;
 
 import br.com.nathan.ecommerce.main.core.domain.BaseEntity;
 import br.com.nathan.ecommerce.main.config.constants.ValidationConstants;
-import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;

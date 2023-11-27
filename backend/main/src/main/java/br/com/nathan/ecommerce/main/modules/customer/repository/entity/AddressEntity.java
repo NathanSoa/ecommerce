@@ -1,4 +1,4 @@
-package br.com.nathan.ecommerce.main.modules.customer.repository;
+package br.com.nathan.ecommerce.main.modules.customer.repository.entity;
 
 import br.com.nathan.ecommerce.main.core.domain.BaseEntity;
 import jakarta.persistence.Entity;

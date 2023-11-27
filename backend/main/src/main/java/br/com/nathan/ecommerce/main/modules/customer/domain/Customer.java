@@ -13,6 +13,7 @@ public class Customer {
     private CPF cpf;
     private Password password;
     private List<Address> address;
+    private List<Card> cards;
     private Boolean active;
 
     private Customer() { }
@@ -56,7 +57,23 @@ public class Customer {
                         .withNumber(a.getNumber())
                         .withState(a.getState())
                         .withStreet(a.getStreet())
-                        .withZipCode(a.getZipCode()))
+                        .withZipCode(a.getZipCode())
+                )
+                .toList();
+        return this;
+    }
+
+    public Customer withCard(List<Card> cards) {
+        if(cards == null || cards.isEmpty()) throw new IllegalArgumentException("card.required");
+        this.cards = cards.stream()
+                .map(c -> Card.Create()
+                        .withType(c.getType())
+                        .withNumber(c.getNumber())
+                        .withName(c.getName())
+                        .withSecurityCode(c.getSecurityCode())
+                        .withFlag(c.getFlag())
+                        .withMain(c.getMain())
+                )
                 .toList();
         return this;
     }

@@ -33,6 +33,10 @@ public class CustomerEntity extends BaseEntity {
     @NotBlank
     private String cpf;
 
+    @NotBlank
+    @Pattern(regexp = "(\\(\\d{2}\\)\\s)(\\d{4,5}\\-\\d{4})", message = "Phone must be in the format (99) 99999-9999")
+    private String phone;
+
     @Pattern.List({
             @Pattern(regexp = "(?=.*[A-Z]).+", message = "Password must contain one upper letter."),
             @Pattern(regexp = "(?=.*[!@#$%^&*+=?-_()/\"\\.,<>~`;:]).+", message ="Password must contain one special character."),
@@ -47,7 +51,6 @@ public class CustomerEntity extends BaseEntity {
     @OneToMany(mappedBy = "customerEntity")
     private List<CardEntity> cardEntity;
 
-
     public CustomerEntity withName(String name) {
         this.name = name;
         return this;
@@ -60,6 +63,11 @@ public class CustomerEntity extends BaseEntity {
 
     public CustomerEntity withCpf(String cpf) {
         this.cpf = cpf;
+        return this;
+    }
+
+    public CustomerEntity withPhone(String phone) {
+        this.phone = phone;
         return this;
     }
 

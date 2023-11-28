@@ -2,6 +2,8 @@ package br.com.nathan.ecommerce.main.modules.customer.repository.entity;
 
 import br.com.nathan.ecommerce.main.core.domain.BaseEntity;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
@@ -30,6 +32,10 @@ public class CardEntity extends BaseEntity {
 
     @NotBlank
     private Boolean main;
+
+    @ManyToOne
+    @JoinColumn(name = "customer_id", nullable = false)
+    private CustomerEntity customerEntity;
 
     public CardEntity withType(String type) {
         this.type = type;

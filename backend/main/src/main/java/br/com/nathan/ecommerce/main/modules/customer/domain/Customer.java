@@ -11,6 +11,7 @@ public class Customer {
     private Name name;
     private Email email;
     private CPF cpf;
+    private Phone phone;
     private Password password;
     private List<Address> address;
     private List<Card> card;
@@ -39,6 +40,11 @@ public class Customer {
 
     public Customer withCPF(String cpf) {
         this.cpf = new CPF(cpf);
+        return this;
+    }
+
+    public Customer withPhone(String phone) {
+        this.phone = new Phone(phone);
         return this;
     }
 

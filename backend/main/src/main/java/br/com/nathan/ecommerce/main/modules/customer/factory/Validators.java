@@ -9,6 +9,7 @@ public class Validators {
     private static final Validator<String> PASSWORD_VALIDATOR = new PasswordValidator();
     private static final Validator<String> EMAIL_VALIDATOR = new EmailValidator();
     private static final Validator<String> CPF_VALIDATOR = new CpfValidator();
+    private static final Validator<String> PHONE_VALIDATOR = new PhoneValidator();
     private static final AddressValidator ADDRESS_VALIDATOR = new AddressValidator();
     private static final CardValidator CARD_VALIDATOR = new CardValidator();
 
@@ -27,6 +28,7 @@ public class Validators {
     public static Validator<String> cpfValidator() {
         return CPF_VALIDATOR;
     }
+    public static Validator<String> phoneValidator() { return PHONE_VALIDATOR;}
 
     public static AddressValidator addressValidator() {
         return ADDRESS_VALIDATOR;

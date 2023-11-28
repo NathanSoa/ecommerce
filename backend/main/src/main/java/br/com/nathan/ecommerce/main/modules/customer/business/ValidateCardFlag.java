@@ -4,16 +4,19 @@ import br.com.nathan.ecommerce.main.core.exceptions.BusinessException;
 import br.com.nathan.ecommerce.main.core.interfaces.Strategy;
 import br.com.nathan.ecommerce.main.modules.cardFlag.useCases.FindAllUseCase;
 import br.com.nathan.ecommerce.main.modules.customer.domain.Card;
-import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-@AllArgsConstructor
 public class ValidateCardFlag implements Strategy<List<Card>> {
 
     private final FindAllUseCase findAllFlags;
+
+    public ValidateCardFlag(@Qualifier("FindAllFlagsUseCase") FindAllUseCase findAllFlags) {
+        this.findAllFlags = findAllFlags;
+    }
 
     @Override
     public void process(List<Card> object) {

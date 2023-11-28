@@ -24,6 +24,7 @@ public class CustomerEntityToCustomer implements Mapper<CustomerEntity, Customer
                 .withCPF(raw.getCpf())
                 .withEmail(raw.getEmail())
                 .withName(raw.getName())
+                .withPhone(raw.getPhone())
                 .withPassword(raw.getPassword())
                 .withActive(raw.getActive())
                 .withAddress(raw.getAddressEntity().stream().map(addressMapper::map).toList())

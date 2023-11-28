@@ -1,9 +1,7 @@
 package br.com.nathan.ecommerce.main.modules.customer.controller;
 
 import br.com.nathan.ecommerce.main.core.annotation.BaseController;
-import br.com.nathan.ecommerce.main.core.exceptions.EntityNotFoundException;
 import br.com.nathan.ecommerce.main.core.infra.http.HttpHelper;
-import br.com.nathan.ecommerce.main.core.validator.TypeUtils;
 import br.com.nathan.ecommerce.main.modules.customer.useCases.DeleteUseCase;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;

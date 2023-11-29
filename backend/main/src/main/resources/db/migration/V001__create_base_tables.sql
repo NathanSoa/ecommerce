@@ -1,7 +1,7 @@
 create table customer (
 id             bigint not null auto_increment,
 active         boolean not null,
-created_at     datetime(6) not null,
+created_at     datetime(6) not null default current_timestamp(6),
 cpf            varchar(255) not null,
 email          varchar(255) not null,
 name           varchar(255) not null,
@@ -14,7 +14,7 @@ primary key (id)
 create table address (
 id             bigint not null auto_increment,
 active         boolean not null,
-created_at     datetime(6) not null,
+created_at     datetime(6) not null default current_timestamp(6),
 alias          varchar(255) not null,
 city           varchar(255) not null,
 complement     varchar(255) not null,
@@ -37,12 +37,13 @@ references customer (id);
 create table card (
 id             bigint not null auto_increment,
 active         boolean not null,
-created_at     datetime(6) not null,
+created_at     datetime(6) not null default current_timestamp(6),
 flag           varchar(255) not null,
 main           boolean not null,
 number         varchar(255) not null,
 security_code  varchar(255) not null,
 type           varchar(255) not null,
+name           varchar(255) not null,
 customer_id    bigint not null,
 
 primary key (id)
@@ -56,7 +57,7 @@ references customer (id);
 create table card_flag (
 id             bigint not null auto_increment,
 active         boolean not null,
-created_at     datetime(6) not null,
+created_at     datetime(6) not null default current_timestamp(6),
 name           varchar(255) not null,
 
 primary key (id)

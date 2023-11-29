@@ -37,12 +37,7 @@ public class CustomerEntity extends BaseEntity {
     @Pattern(regexp = "(\\(\\d{2}\\)\\s)(\\d{4,5}\\-\\d{4})", message = "Phone must be in the format (99) 99999-9999")
     private String phone;
 
-    @Pattern.List({
-            @Pattern(regexp = "(?=.*[A-Z]).+", message = "Password must contain one upper letter."),
-            @Pattern(regexp = "(?=.*[!@#$%^&*+=?-_()/\"\\.,<>~`;:]).+", message ="Password must contain one special character."),
-    })
     @NotBlank
-    @Size(min = ValidationConstants.PASSWORD_MIN_LENGTH, max = ValidationConstants.PASSWORD_MAX_LENGTH)
     private String password;
 
     @OneToMany(mappedBy = "customerEntity")

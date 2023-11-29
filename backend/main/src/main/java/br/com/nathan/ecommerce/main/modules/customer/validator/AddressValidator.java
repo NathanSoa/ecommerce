@@ -13,7 +13,6 @@ public class AddressValidator implements Validator<Address> {
         validateAlias(object.getAlias());
         validateStreet(object.getStreet());
         validateNumber(object.getNumber());
-        validateComplement(object.getComplement());
         validateNeighborhood(object.getNeighborhood());
         validateCity(object.getCity());
         validateState(object.getState());
@@ -35,12 +34,6 @@ public class AddressValidator implements Validator<Address> {
     public void validateNumber(String number) {
         if (number == null || number.isEmpty()) {
             throw new IllegalArgumentException("address.number");
-        }
-    }
-
-    public void validateComplement(String complement) {
-        if (complement == null || complement.isEmpty()) {
-            throw new IllegalArgumentException("address.complement");
         }
     }
 

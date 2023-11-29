@@ -10,6 +10,8 @@ import br.com.nathan.ecommerce.main.modules.customer.repository.entity.CustomerE
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import static br.com.nathan.ecommerce.main.core.utils.Utils.TrueIfNull;
+
 @Component
 @AllArgsConstructor
 public class CustomerToCustomerEntity implements Mapper<Customer, CustomerEntity> {
@@ -28,7 +30,7 @@ public class CustomerToCustomerEntity implements Mapper<Customer, CustomerEntity
                     .withPassword(raw.getPassword().getValue())
                     .withAddress(raw.getAddress().stream().map(addressMapper::map).toList())
                     .withCard(raw.getCard().stream().map(cardMapper::map).toList())
-                    .withActive(raw.getActive());
+                    .withActive(TrueIfNull(raw.getActive()));
 
     }
 }

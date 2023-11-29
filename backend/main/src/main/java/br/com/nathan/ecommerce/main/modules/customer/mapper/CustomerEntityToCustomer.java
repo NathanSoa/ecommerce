@@ -1,9 +1,7 @@
 package br.com.nathan.ecommerce.main.modules.customer.mapper;
 
 import br.com.nathan.ecommerce.main.core.interfaces.Mapper;
-import br.com.nathan.ecommerce.main.modules.customer.domain.Address;
-import br.com.nathan.ecommerce.main.modules.customer.domain.Card;
-import br.com.nathan.ecommerce.main.modules.customer.domain.Customer;
+import br.com.nathan.ecommerce.main.modules.customer.domain.*;
 import br.com.nathan.ecommerce.main.modules.customer.repository.entity.AddressEntity;
 import br.com.nathan.ecommerce.main.modules.customer.repository.entity.CardEntity;
 import br.com.nathan.ecommerce.main.modules.customer.repository.entity.CustomerEntity;
@@ -19,15 +17,18 @@ public class CustomerEntityToCustomer implements Mapper<CustomerEntity, Customer
 
     @Override
     public Customer map(CustomerEntity raw) {
-        return Customer.Create()
-                .withId(raw.getId())
-                .withCPF(raw.getCpf())
-                .withEmail(raw.getEmail())
-                .withName(raw.getName())
-                .withPhone(raw.getPhone())
-                .withPassword(raw.getPassword())
-                .withActive(raw.getActive())
-                .withAddress(raw.getAddressEntity().stream().map(addressMapper::map).toList())
-                .withCard(raw.getCardEntity().stream().map(cardMapper::map).toList());
+        final var customer = Customer.Create();
+
+        customer.setId(raw.getId());
+        customer.setName(Name.withoutValidation(raw.getName()));
+        customer.setEmail(Email.withoutValidation(raw.getEmail()));
+        customer.setCpf(CPF.withoutValidation(raw.getCpf()));
+        customer.setPhone(Phone.withoutValidation(raw.getPhone()));
+        customer.setPassword(Password.withoutValidation(raw.getPassword()));
+        customer.setActive(raw.getActive());
+        customer.setAddress(raw.getAddressEntity().stream().map(addressMapper::map).toList());
+        customer.setCard(raw.getCardEntity().stream().map(cardMapper::map).toList());
+
+        return customer;
     }
 }

@@ -25,7 +25,7 @@ public class ValidateCardFlag implements Strategy<List<Card>> {
                 .map(flag -> flag.getName().toUpperCase()).toList();
 
         object.forEach(card -> {
-            if(!(flags.contains(card.getName().toUpperCase()))) {
+            if(!(flags.contains(card.getFlag().toUpperCase()))) {
                 throw new BusinessException("card.flag.invalid");
             }
         });

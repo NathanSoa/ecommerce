@@ -1,6 +1,7 @@
 package br.com.nathan.ecommerce.main.modules.customer.domain;
 
 import br.com.nathan.ecommerce.main.modules.customer.validator.CardValidator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import static br.com.nathan.ecommerce.main.modules.customer.factory.Validators.cardValidator;
@@ -14,6 +15,8 @@ public class Card {
     private String securityCode;
     private String flag;
     private Boolean main;
+
+    @JsonIgnore
     private CardValidator validator;
 
     private Card() {

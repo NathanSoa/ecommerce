@@ -1,6 +1,7 @@
 package br.com.nathan.ecommerce.main.modules.customer.domain;
 
 import br.com.nathan.ecommerce.main.modules.customer.validator.AddressValidator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import java.util.List;
@@ -18,6 +19,8 @@ public class Address {
     private String state;
     private String zipCode;
     private List<String> streetPurpose;
+
+    @JsonIgnore
     private AddressValidator validator;
 
     private Address() {
@@ -47,7 +50,6 @@ public class Address {
     }
 
     public Address withComplement(String complement) {
-        validator.validateComplement(complement);
         this.complement = complement;
         return this;
     }

@@ -4,15 +4,15 @@ import br.com.nathan.ecommerce.main.core.interfaces.Validator;
 
 public class CpfValidator implements Validator<String> {
 
+    public static final String FORMATTED = "(\\d{3})[.](\\d{3})[.](\\d{3})-(\\d{2})";
+    public static final String UNFORMATTED = "(\\d{3})(\\d{3})(\\d{3})(\\d{2})";
+
     @Override
     public void validate(String cpf) {
         if(cpf == null || cpf.isBlank() || cpf.isEmpty()) {
             throw new IllegalArgumentException("customer.cpf.required");
         }
-        var cpfValidator = new br.com.caelum.stella.validation.CPFValidator();
-        try {
-            cpfValidator.assertValid(cpf);
-        } catch (Exception e) {
+        if (!(cpf.matches(FORMATTED) || cpf.matches(UNFORMATTED))) {
             throw new IllegalArgumentException("customer.cpf.invalid");
         }
     }

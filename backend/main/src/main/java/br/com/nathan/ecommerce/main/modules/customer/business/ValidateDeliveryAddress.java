@@ -17,7 +17,7 @@ public class ValidateDeliveryAddress implements Strategy<List<Address>> {
                         address -> address.getStreetPurpose().stream()
                                 .map(String::toUpperCase)
                                 .toList()
-                                .contains("DELIVERY")
+                                .contains("ENTREGA")
                 )
                 .findFirst()
                 .orElseThrow(() -> new BusinessException("address.delivery"));

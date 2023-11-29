@@ -17,7 +17,7 @@ public class ValidateBillingAddress implements Strategy<List<Address>> {
                         address -> address.getStreetPurpose().stream()
                         .map(String::toUpperCase)
                         .toList()
-                        .contains("BILLING")
+                        .contains("COBRANÇA")
                 )
                 .findFirst()
                 .orElseThrow(() -> new BusinessException("address.billing"));

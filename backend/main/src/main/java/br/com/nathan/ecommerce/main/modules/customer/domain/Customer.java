@@ -4,6 +4,8 @@ import lombok.Data;
 
 import java.util.List;
 
+import static br.com.nathan.ecommerce.main.core.utils.Utils.TrueIfNull;
+
 @Data
 public class Customer {
 
@@ -23,33 +25,28 @@ public class Customer {
         return new Customer();
     }
 
-    public Customer withId(Long id) {
-        this.id = id;
-        return this;
-    }
-
     public Customer withName(String name) {
-        this.name = new Name(name);
+        this.name = Name.withValidation(name);
         return this;
     }
 
     public Customer withEmail(String email) {
-        this.email = new Email(email);
+        this.email = Email.withValidation(email);
         return this;
     }
 
     public Customer withCPF(String cpf) {
-        this.cpf = new CPF(cpf);
+        this.cpf = CPF.withValidation(cpf);
         return this;
     }
 
     public Customer withPhone(String phone) {
-        this.phone = new Phone(phone);
+        this.phone = Phone.withValidation(phone);
         return this;
     }
 
     public Customer withPassword(String password) {
-        this.password = new Password(password);
+        this.password = Password.withValidation(password);
         return this;
     }
 
@@ -57,10 +54,12 @@ public class Customer {
         if(address == null || address.isEmpty()) throw new IllegalArgumentException("address.required");
         this.address = address.stream()
                 .map(a -> Address.Create()
+                        .withAlias(a.getAlias())
                         .withCity(a.getCity())
                         .withComplement(a.getComplement())
                         .withNeighborhood(a.getNeighborhood())
                         .withNumber(a.getNumber())
+                        .withStreetPurpose(a.getStreetPurpose())
                         .withState(a.getState())
                         .withStreet(a.getStreet())
                         .withZipCode(a.getZipCode())

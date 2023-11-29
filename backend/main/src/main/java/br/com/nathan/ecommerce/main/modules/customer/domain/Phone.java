@@ -9,8 +9,16 @@ public class Phone {
 
     private String value;
 
-    public Phone(String phone) {
-        phoneValidator().validate(phone);
+    private Phone(String phone) {
         this.value = phone;
+    }
+
+    public static Phone withValidation(String phone) {
+        phoneValidator().validate(phone);
+        return new Phone(phone);
+    }
+
+    public static Phone withoutValidation(String phone) {
+        return new Phone(phone);
     }
 }

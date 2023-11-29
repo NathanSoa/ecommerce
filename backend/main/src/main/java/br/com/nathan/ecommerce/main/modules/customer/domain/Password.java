@@ -9,8 +9,16 @@ public class Password {
 
     private String value;
 
-    public Password(String password) {
-        passwordValidator().validate(password);
+    private Password(String password) {
         this.value = password;
+    }
+
+    public static Password withValidation(String password) {
+        passwordValidator().validate(password);
+        return new Password(password);
+    }
+
+    public static Password withoutValidation(String password) {
+        return new Password(password);
     }
 }

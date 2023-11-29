@@ -9,8 +9,16 @@ public class Name {
 
     private String value;
 
-    public Name(String name) {
-        nameValidator().validate(name);
+    private Name(String name) {
         this.value = name;
+    }
+
+    public static Name withValidation(String name) {
+        nameValidator().validate(name);
+        return new Name(name);
+    }
+
+    public static Name withoutValidation(String name) {
+        return new Name(name);
     }
 }

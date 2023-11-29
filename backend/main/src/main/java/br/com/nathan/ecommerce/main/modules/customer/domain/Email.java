@@ -9,8 +9,16 @@ public class Email {
 
     private String value;
 
-    public Email(String email) {
-        emailValidator().validate(email);
+    private Email(String email) {
         this.value = email;
+    }
+
+    public static Email withValidation(String email) {
+        emailValidator().validate(email);
+        return new Email(email);
+    }
+
+    public static Email withoutValidation(String email) {
+        return new Email(email);
     }
 }

@@ -9,8 +9,16 @@ public class CPF {
 
     private final String value;
 
-    public CPF(String cpf) {
-        cpfValidator().validate(cpf);
+    private CPF(String cpf) {
         this.value = cpf;
+    }
+
+    public static CPF withValidation(String cpf) {
+        cpfValidator().validate(cpf);
+        return new CPF(cpf);
+    }
+
+    public static CPF withoutValidation(String cpf) {
+        return new CPF(cpf);
     }
 }
